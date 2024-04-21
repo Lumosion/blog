@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Untitled | Lumosion's Blog</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="/img/pwa/favicon.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.8.12"><!-- inject head--><link rel="stylesheet" href="https://cdn2.codesign.qq.com/icons/7pOrz0WXB5ZWJPX/latest/iconfont.css"><!-- aplayer--><!-- swiper--><!-- fancybox ui--><!-- katex--><!-- Open Graph--><meta name="description" content="拯救 $Pika$ -题解对于题目，我们先看另一种情况。 easy version假设墙壁为 $x^2+y^2&amp;#x3D;1$ 起始点固定在 $(-1,0)$ 。 行走方式可以选择为 向正上方走，用自由向量表示为 $\vec{n_1}&amp;#x3D;(0,1)$ 向指定方向走，与 $x$ 轴正半轴夹"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="Lumosion's Blog"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="/img/pwa/favicon.ico"><link rel="apple-touch-icon" href="/img/pwa/favicon.ico" sizes="180x180"><script>console.log(
+    "%c Program: Hexo %c Theme: Solitude %c Version: v1.8.12",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "padding: 5px 10px;color:white;background:#0084ff;",
+)
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+    
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+    
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+    
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+    
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+        
+                if (name && keyObj[name]) return
+        
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    copyright: {"limit":50,"author":"作者: Lumosion","link":"链接: ","source":"来源: Lumosion's Blog","info":"著作权归作者所有。 商业转载请联系作者获得授权，非商业转载请注明出处。"},
+    highlight: {
+        enable: true,
+        limit: 200,
+        expand: true,
+        copy: true,
+        syntax: 'highlight.js'
+    },
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可"},
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: [],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: false,
+    lightbox: 'null',
+    post_ai: false,
+    right_menu: false,
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: false,
+    ai_text: false
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude st-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换"><i class="solitude st-moon-clear-fill"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制"><i class="solitude st-side-bar-fill"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span>显示模式</span></span></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">Lumosion</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Untitled</a></div></div><div id="menus"></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="solitude st-train-line"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude st-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude st-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/default.png" alt="Untitled"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><div class="tag_share"><div class="post-meta__tag-list"></div></div></div></div><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-secondline"></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="拯救-Pika-题解"><a href="#拯救-Pika-题解" class="headerlink" title="拯救 $Pika$ -题解"></a>拯救 $Pika$ -题解</h1><p>对于题目，我们先看另一种情况。</p>
+<h2 id="easy-version"><a href="#easy-version" class="headerlink" title="easy version"></a>easy version</h2><p>假设墙壁为 $x^2+y^2&#x3D;1$ </p>
+<p>起始点固定在 $(-1,0)$ 。</p>
+<p>行走方式可以选择为</p>
+<ul>
+<li>向正上方走，用自由向量表示为 $\vec{n_1}&#x3D;(0,1)$</li>
+<li>向指定方向走，与 $x$ 轴正半轴夹角为 $\theta$ ，保证 $0&lt;\theta&lt;\dfrac{\pi}{2}$ ，用自由向量表示为 $\vec{n_2&#x3D;(\cos\theta,-\sin\theta)}$ 。</li>
+</ul>
+<img src="https://lumosion.me/wp-content/uploads/2023/12/image-1702648868074.png" alt="file" style="zoom:50%;" />
+
+<p>在这种情况下两种行走方式必定是交替进行的，并且行走的次数与 $\theta$ 有直接关系，由圆周角等于圆心角的两倍，可以标出下图对应的角度，因为角度 $\theta$ 并不会发生改变，因此每次行走的角度对应的弧长一定是相等的。假如最开始选择方向是第 $0$ 次，起点与第 $2$ 次选择方向所处位置就是这个弧，以此类推，第 $2,4,6,\cdots,2i$ 之间形成的弧长度一定相等，奇数同理，如果在弧度之下看这个弧的长，那就是 $\pi-2\theta$，每一次的弧一定不会相交。因此，当下一次弧必须与之前弧相交时，就是不能行走的时候，也可以转化为每次加$\pi-2\theta$，当下一次将会超过 $2\pi$ 时，就是需要打破墙壁的时候。</p>
+<p>在这个情况下，最终的答案应该是 $\dfrac{2\pi}{\pi-2\theta}$ ，对于算出来的小数，如果是整除，需要额外减去 $1$ ，其他情况下直接舍去小数即可，可以统一为对最终结果向上取整并减 $1$ ，即 $\lceil\dfrac{2\pi}{\pi-2\theta}\rceil-1$。</p>
+<img src="https://lumosion.me/wp-content/uploads/2023/12/image-1702648883194.png" alt="file" style="zoom:50%;" />
+
+<h2 id="middle-version"><a href="#middle-version" class="headerlink" title="middle version"></a>middle version</h2><p>现在看目前题目的情况，墙壁为一个椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}&#x3D;1$ ，并且角度固定为 $\dfrac{\pi}{4}$ ，因此我们可以将其进行坐标系变化，转化为刚才那种情况，即将 $x$ 变化为 $ax$ ， $y$ 变化为 $by$ 即可得到方程 $x^2+y^2&#x3D;1$ ，此时原本的固定的角度$\dfrac{\pi}{4}$ 会发生改变，$\theta$ 为  $\arctan\dfrac{a}{b}$ ，为了减少精度损失，因为 $\arctan x+\arctan\dfrac{1}{x}&#x3D;\dfrac{π}{2}$，因此 $\dfrac{\pi}{2}-\theta&#x3D;\arctan \dfrac{b}{a}$ 。</p>
+<p>根据 <strong>easy version</strong> 的结论， $\lceil\dfrac{2\pi}{\pi- 2\theta}\rceil-1&#x3D;\lceil\dfrac{2\pi}{2\arctan \dfrac{b}{a}}\rceil-1&#x3D;\lceil\dfrac{\pi}{\arctan\dfrac{b}{a}}\rceil-1$ ，编程可以使用 <code>acos(-1)</code> 尽可能求出 $\pi$ 的近似值，因此最终要求的就是 $\lceil\dfrac{\arccos(-1)}{\arctan\dfrac{b}{a}}\rceil-1$ ，注意开 <code>long long</code> 。</p>
+<h2 id="hard-version"><a href="#hard-version" class="headerlink" title="hard version"></a>hard version</h2><p>其实本来出的 <strong>middle version</strong> 角度并不是固定的，假设角度不是固定的话，$\theta^&#96;$ 为 $\arctan({\dfrac{a}{b}\tan\theta})$ ，其他道理与后面大致相同了。</p>
+<h2 id="另一种解法"><a href="#另一种解法" class="headerlink" title="另一种解法"></a>另一种解法</h2><p>可以通过光线反射的角度来看待这一题，可参考CHOJ上另一题<a target="_blank" rel="noopener" href="https://oj.chdacm.cn/problem.php?id=4325">光与镜</a> 。</p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> a, b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    <span class="type">double</span> theta = <span class="built_in">atan</span>(<span class="number">1.0</span> * b / a);</span><br><span class="line">    cout &lt;&lt; <span class="built_in">setprecision</span>(<span class="number">11</span>) &lt;&lt; <span class="built_in">ceil</span>(<span class="built_in">acos</span>(<span class="number">-1</span>) / theta) - <span class="number">1</span> &lt;&lt; endl; <span class="comment">// 向上取整-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://lumosion.me/index.php/2023/12/15/save-pika/">拯救Pika</a></p>
+<p><a target="_blank" rel="noopener" href="http://t.cn/Eq3Ax0S">The Pi Machine-纽约时报</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bt41147H5">方块碰撞</a></p>
+<p><a target="_blank" rel="noopener" href="https://lumosion.me/wp-content/uploads/2023/12/Galperin.-Playing-pool-with-pi.pdf">PLAYING POOL WITH π</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="/img/pwa/favicon.ico"></a><div class="post-copyright__author_name">Lumosion's Blog</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">Lumosion's Blog</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/04/21/%E6%8B%AF%E6%95%91Pika%EF%BC%88middle%20version%EF%BC%89/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Untitled</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="/img/avatar.png"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://7.isyangs.cn/34/65f2e4e0423cc-34.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Lumosion</div><div class="author-info__desc"></div></a><div class="card-info-social-icons is-center"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude st-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%AF%E6%95%91-Pika-%E9%A2%98%E8%A7%A3"><span class="toc-text">拯救 $Pika$ -题解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#easy-version"><span class="toc-text">easy version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#middle-version"><span class="toc-text">middle version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hard-version"><span class="toc-text">hard version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%A7%A3%E6%B3%95"><span class="toc-text">另一种解法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-text">示例代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="toc-text">相关链接</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude st-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E6%8B%AF%E6%95%91Pika-%E9%A2%98%E8%A7%A3/" title="Untitled"><img alt="Untitled" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E6%8B%AF%E6%95%91Pika-%E9%A2%98%E8%A7%A3/" title="Untitled">Untitled</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E6%8B%AF%E6%95%91Pika%EF%BC%88middle%20version%EF%BC%89/" title="Untitled"><img alt="Untitled" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E6%8B%AF%E6%95%91Pika%EF%BC%88middle%20version%EF%BC%89/" title="Untitled">Untitled</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E6%AC%A1%E5%85%83LAB%20-%20%E9%A2%98%E7%9B%AE%E5%8F%8A%E9%A2%98%E8%A7%A3/" title="Untitled"><img alt="Untitled" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E6%AC%A1%E5%85%83LAB%20-%20%E9%A2%98%E7%9B%AE%E5%8F%8A%E9%A2%98%E8%A7%A3/" title="Untitled">Untitled</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E6%9D%BF%E5%AD%90/" title="Untitled"><img alt="Untitled" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E6%9D%BF%E5%AD%90/" title="Untitled">Untitled</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E5%9B%BE%E8%AE%BAplus/" title="Untitled"><img alt="Untitled" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E5%9B%BE%E8%AE%BAplus/" title="Untitled">Untitled</a></div></div></div></div></div></div></main><footer id="footer"><div id="st-footer-bar"><div class="footer-logo"><span>Lumosion</span></div><div class="footer-bar-description">来自Lumosion's Blog - 的文章</div><a class="footer-bar-link" href="/">了解更多</a></div><div id="footer_deal"></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2023 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Lumosion</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/valor-x/hexo-theme-solitude" alt="主题">主题</a><a class="footer-bar-link cc" href="/null" aria-label="copyright"><i class="solitude st-copyright-line"></i><i class="solitude st-creative-commons-by-line"></i><i class="solitude st-creative-commons-nc-line"></i><i class="solitude st-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- right_menu--><!-- inject body--><div><script src="/js/utils.js?v=1.8.12"></script><script src="/js/main.js?v=1.8.12"></script><script src="/js/third_party/waterfall.min.js?v=1.8.12"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/third_party/universe.min.js?v=1.8.12"></script><script>dark()
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><div class="js-pjax"></div></div><!-- newest comment--><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    is_rm && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- google adsense--><!-- search--><!-- music--></body></html><script>const posts=["2024/04/21/拯救Pika-题解/","2024/04/21/拯救Pika（middle version）/","2024/04/21/次元LAB - 题目及题解/","2024/04/21/板子/","2024/04/21/图论plus/","2024/04/21/树论/","2024/04/21/5 数论/","2024/04/21/jiangly板子/","2024/04/21/0 基础算法/","2024/04/21/1 搜索-图论/","2024/04/21/hello-world/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); }</script>
