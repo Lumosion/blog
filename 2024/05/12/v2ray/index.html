@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>v2ray | Lumosion's Blog</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="/img/pwa/favicon.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=1.8.12"><!-- inject head--><link rel="stylesheet" href="https://cdn2.codesign.qq.com/icons/7pOrz0WXB5ZWJPX/latest/iconfont.css"><!-- aplayer--><!-- swiper--><!-- fancybox ui--><!-- katex--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"><!-- Open Graph--><meta name="description" content="v2ray 教程 v2ray官方网站 配置服务器 前置条件 需要一台Linux服务器； 已经使用 SSH 连接到Linux服务器，这个不会可以网上搜一下； 确保有wget（默认一般都有）； 如果没有的话，可以使用 sudo apt install wget 进行安装 确保进入 r"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="Lumosion's Blog"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="/img/pwa/favicon.ico"><link rel="apple-touch-icon" href="/img/pwa/favicon.ico" sizes="180x180"><script>console.log(
+    "%c Program: Hexo %c Theme: Solitude %c Version: v1.8.12",
+    "border-radius:5px 0 0 5px;padding: 5px 10px;color:white;background:#ff3842;",
+    "padding: 5px 10px;color:white;background:#3e9f50;",
+    "padding: 5px 10px;color:white;background:#0084ff;",
+)
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+    
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+    
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+    
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+    
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+        
+                if (name && keyObj[name]) return
+        
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/error_load.png'
+    },
+    copyright: {"limit":50,"author":"作者: Lumosion","link":"链接: ","source":"来源: Lumosion's Blog","info":"著作权归作者所有。 商业转载请联系作者获得授权，非商业转载请注明出处。"},
+    highlight: {
+        enable: true,
+        limit: 200,
+        expand: true,
+        copy: true,
+        syntax: 'highlight.js'
+    },
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可"},
+    aside: {
+        sayhello: {
+            morning: '一日之计在于晨',
+            noon: '吃饱了才有力气干活',
+            afternoon: '集中精力，攻克难关',
+            night: '不要太劳累了，早睡更健康',
+            goodnight: '睡个好觉，保证精力充沛',
+        },
+        sayhello2: [],
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: false,
+    lightbox: 'null',
+    post_ai: false,
+    right_menu: false,
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: false,
+    ai_text: false
+}</script><meta name="generator" content="Hexo 7.2.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- loading--><!-- console--><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude st-close-fill"></i></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="昼夜切换"><i class="solitude st-moon-clear-fill"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="边栏显示控制"><i class="solitude st-side-bar-fill"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude st-moon-clear-fill"></i><span>显示模式</span></span></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">Lumosion</span></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">v2ray</a></div></div><div id="menus"></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://lumosion.me" title=""><i class="solitude st-train-line"></i></a></div><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://alist.lumosion.me" title=""><i class="solitude st-train-line"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude st-arrow-up-line"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude st-menu-line"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/default.png" alt="v2ray"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><div class="tag_share"><div class="post-meta__tag-list"></div></div></div></div><h1 class="post-title">v2ray</h1><div id="post-meta"><div class="meta-secondline"></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>v2ray 教程</h1>
+<p><a target="_blank" rel="noopener" href="https://www.v2ray.com/">v2ray官方网站</a></p>
+<h2 id="配置服务器">配置服务器</h2>
+<h3 id="前置条件">前置条件</h3>
+<ul>
+<li>
+<p>需要一台Linux服务器；</p>
+</li>
+<li>
+<p>已经使用 <code>SSH</code> 连接到Linux服务器，这个不会可以网上搜一下；</p>
+</li>
+<li>
+<p>确保有wget（默认一般都有）；</p>
+<ul>
+<li>如果没有的话，可以使用 <code>sudo apt install wget</code> 进行安装</li>
+</ul>
+</li>
+<li>
+<p>确保进入 <code>root</code> 用户；</p>
+<ul>
+<li>如果是一台新的服务器，可能会存在没设置<code>root</code> 用户密码的情况，这个时候需要按照以下步骤进行设置；
+<ul>
+<li>输入 <code>sudo passwd root</code> ，这时候会显示 <code>New password: </code> ；</li>
+<li>输入新密码（输入不会外显），然后显示 <code>Retype new password: </code> ；</li>
+<li>然后再次输入密码，如果显示 <code>passwd: password unchanged </code> 代表上述步骤有问题，可以重新执行；</li>
+</ul>
+</li>
+<li>进入 <code>root</code> 用户；
+<ul>
+<li>可以输入 <code>sudo su</code> ，然后输入 <code>root</code> 用户的密码，以 <code>root</code> 用户登录；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>服务器所在地就是代理服务器所在地，原理通过服务器进行中转流量。</p>
+</li>
+</ul>
+<h3 id="安装v2ray">安装v2ray</h3>
+<p>可以使用下面命令进行安装（确保进入 <code>root</code> 用户）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(wget -qO- -o- https://git.io/v2ray.sh)</span><br></pre></td></tr></table></figure>
+<p>具体脚本配置可以查看：<a target="_blank" rel="noopener" href="https://233boy.com/v2ray/v2ray-script/">最好用的 V2Ray 一键安装脚本</a></p>
+<h3 id="开放端口">开放端口</h3>
+<p>安装完成后，理论会直接创建一个默认配置，并且显示出来</p>
+<p>后面也可以用 <code>sudo v2ray</code> 命令后，输入 <code>3</code> 查看</p>
+<p>格式一般是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">------------- VMess-TCP-60105.json -------------</span><br><span class="line">协 议  (protocol)         = vmess</span><br><span class="line">地 址  (address)          = xxx.xxx.xxx.xxx</span><br><span class="line">端 口  (port)             = xxx</span><br><span class="line">用 户 ID (id)             = xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</span><br><span class="line">传 输 协 议  (network)      = tcp</span><br><span class="line">伪 装 类 型  (type)         = none</span><br><span class="line">------------- 链 接  (URL) -------------</span><br><span class="line">vmess://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+<p>在自己的对应的运营商，添加上面的<strong>端口</strong>的<strong>入站规则</strong>即可。</p>
+<p>以 Azure 为例：</p>
+<p>找到虚拟机对应的 <code>name-nsg</code>（网络安全组）。</p>
+<p><img src="https://gitee.com/lumosion/pic-go/raw/master/icpc/2023new/202405120142306.png" alt="image-20240512014221178"></p>
+<p>然后添加入站规则，<strong>目标端口范围</strong>输入上面的<strong>端口</strong>即可。</p>
+<p><img src="https://gitee.com/lumosion/pic-go/raw/master/icpc/2023new/202405120143871.png" alt="image-20240512014347829"></p>
+<p>这个时候服务器端，基本就设置完成了。</p>
+<h3 id="启用BBR-（拥塞控制算法）">启用BBR-（拥塞控制算法）</h3>
+<p>输入 <code>sudo v2ray bbr</code> 启用BBR优化，建议启用，优化启用后看Youtube的4K一点也不卡。</p>
+<h2 id="安装客户端">安装客户端</h2>
+<p><a target="_blank" rel="noopener" href="https://www.v2ray.com/awesome/tools.html">神一样的工具</a></p>
+<h3 id="Windows-v2rayN">Windows-v2rayN</h3>
+<p>可以去Github上开源仓库下载，也可以在我的镜像网站下载（我提供的可能不是最新版，安装完自己检查更新一下就可以了）</p>
+<p>官方版本：<a target="_blank" rel="noopener" href="https://github.com/2dust/v2rayN/releases/latest">v2rayN-With-Core.zip</a></p>
+<p>镜像版本：<a target="_blank" rel="noopener" href="https://alist.lumosion.me/%E6%96%87%E4%BB%B6/v2rayN-With-Core.zip">v2rayN-With-Core.zip</a></p>
+<p>下载完成，解压，双击v2rayN.exe即可</p>
+<h3 id="Linux-Qv2ray">Linux-Qv2ray</h3>
+<p>同样可以去官方版本下载，也可以下载镜像的</p>
+<p>一共需要两个文件，一个是Qv2ray也就是图形化界面客户端，另一个是v2ray的核心文件</p>
+<p><strong>注：Qv2ray现在已经停止维护了</strong></p>
+<p>官方版本：<a target="_blank" rel="noopener" href="https://github.com/Qv2ray/Qv2ray/releases/download/v2.7.0/Qv2ray-v2.7.0-linux-x64.AppImage">Qv2ray-v2.7.0-linux-x64.AppImage</a>  <a target="_blank" rel="noopener" href="https://github.com/v2fly/v2ray-core/releases/latest/">v2ray-linux-64.zip</a></p>
+<p>镜像版本：<a target="_blank" rel="noopener" href="https://alist.lumosion.me/%E6%96%87%E4%BB%B6/Qv2ray-v2.7.0-linux-x64.AppImage">Qv2ray-v2.7.0-linux-x64.AppImage</a>  <a target="_blank" rel="noopener" href="https://alist.lumosion.me/%E6%96%87%E4%BB%B6/v2ray-linux-64.zip">v2ray-linux-64.zip</a></p>
+<p>然后具体使用可以参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/433909743?utm_id=0">V2ray在Linux版本中安装</a></p>
+<h3 id="Android-v2rayNG">Android-v2rayNG</h3>
+<p>可以在Google Play、Github下载，也可以下载镜像的</p>
+<p>Google Play：<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.v2ray.ang">v2rayNG</a></p>
+<p>Github：<a target="_blank" rel="noopener" href="https://github.com/2dust/v2rayNG/releases/latest">v2rayNG.apk</a></p>
+<p>镜像版本：<a target="_blank" rel="noopener" href="https://alist.lumosion.me/%E6%96%87%E4%BB%B6/v2rayNG_1.8.22.apk">v2rayNG_1.8.22.apk</a></p>
+<h3 id="苹果设备">苹果设备</h3>
+<p>参考官方文档：<a target="_blank" rel="noopener" href="https://www.v2ray.com/awesome/tools.html">神一样的工具</a>，Qv2ray也开发了Mac版的 <a target="_blank" rel="noopener" href="https://github.com/Qv2ray/Qv2ray/releases/download/v2.7.0/Qv2ray-v2.7.0-macOS-x64.dmg">Qv2ray-v2.7.0-macOS-x64.dmg</a></p>
+<h2 id="导入到客户端">导入到客户端</h2>
+<p>输入 <code>sudo v2ray</code> 命令后，输入 <code>3</code> 查看</p>
+<p>格式一般是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">------------- VMess-TCP-60105.json -------------</span><br><span class="line">协 议  (protocol)         = vmess</span><br><span class="line">地 址  (address)          = xxx.xxx.xxx.xxx</span><br><span class="line">端 口  (port)             = xxx</span><br><span class="line">用 户 ID (id)             = xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</span><br><span class="line">传 输 协 议  (network)      = tcp</span><br><span class="line">伪 装 类 型  (type)         = none</span><br><span class="line">------------- 链 接  (URL) -------------</span><br><span class="line">vmess://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+<p>可以用两种方式导入客户端：</p>
+<ul>
+<li>可以将上面的<strong>地址</strong>、<strong>端口</strong>、<strong>用户ID</strong>填写到对应的客户端即可，其他选项默认。</li>
+<li>复制上面的<strong>链接</strong> <code>vmess://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code> ，然后在客户端选择从剪贴板导入。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/about/"><img class="post-copyright__author_img_front" src="/img/pwa/favicon.ico"></a><div class="post-copyright__author_name">Lumosion's Blog</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">Lumosion's Blog</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/04/21/%E6%8B%AF%E6%95%91Pika-%E9%A2%98%E8%A7%A3/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">拯救 Pika -题解</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div><div class="avatar-img-group"><img class="avatar-img" alt="头像" src="/img/avatar.png"><div class="avatar-sticker"><img class="avatar-sticker-img" src="https://7.isyangs.cn/34/65f2e4e0423cc-34.png" alt="心情贴纸"></div></div><div class="author-info__description_group"><div class="author-info__description">分享自己对编程的<b>热爱</b>，对美好生活的<b>向往</b>，对知识海洋<b>探索历程</b>。</div><div class="author-info__description2">相信你可以在这里找到对你有用的知识和教程。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><div class="author-info__name">Lumosion</div><div class="author-info__desc"></div></a><div class="card-info-social-icons is-center"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude st-menu-line"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">v2ray 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">配置服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="toc-text">前置条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85v2ray"><span class="toc-text">安装v2ray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3"><span class="toc-text">开放端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%94%A8BBR-%EF%BC%88%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%AE%97%E6%B3%95%EF%BC%89"><span class="toc-text">启用BBR-（拥塞控制算法）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">安装客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows-v2rayN"><span class="toc-text">Windows-v2rayN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-Qv2ray"><span class="toc-text">Linux-Qv2ray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-v2rayNG"><span class="toc-text">Android-v2rayNG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8B%B9%E6%9E%9C%E8%AE%BE%E5%A4%87"><span class="toc-text">苹果设备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%88%B0%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">导入到客户端</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude st-map-line"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/12/v2ray/" title="v2ray"><img alt="v2ray" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/05/12/v2ray/" title="v2ray">v2ray</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E6%8B%AF%E6%95%91Pika-%E9%A2%98%E8%A7%A3/" title="拯救 Pika -题解"><img alt="拯救 Pika -题解" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E6%8B%AF%E6%95%91Pika-%E9%A2%98%E8%A7%A3/" title="拯救 Pika -题解">拯救 Pika -题解</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E6%8B%AF%E6%95%91Pika%EF%BC%88middle%20version%EF%BC%89/" title="拯救 Pika （middle version）"><img alt="拯救 Pika （middle version）" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E6%8B%AF%E6%95%91Pika%EF%BC%88middle%20version%EF%BC%89/" title="拯救 Pika （middle version）">拯救 Pika （middle version）</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E6%AC%A1%E5%85%83LAB%20-%20%E9%A2%98%E7%9B%AE%E5%8F%8A%E9%A2%98%E8%A7%A3/" title="次元LAB"><img alt="次元LAB" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E6%AC%A1%E5%85%83LAB%20-%20%E9%A2%98%E7%9B%AE%E5%8F%8A%E9%A2%98%E8%A7%A3/" title="次元LAB">次元LAB</a></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/21/%E6%9D%BF%E5%AD%90/" title="板子"><img alt="板子" src="/img/default.png"></a><div class="content"><a class="title" href="/2024/04/21/%E6%9D%BF%E5%AD%90/" title="板子">板子</a></div></div></div></div></div></div></main><footer id="footer"><div id="st-footer-bar"><div class="footer-logo"><span>Lumosion</span></div><div class="footer-bar-description">来自Lumosion's Blog - 的文章</div><a class="footer-bar-link" href="/">了解更多</a></div><div id="footer_deal"></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2023 - 2024 By&nbsp;<a class="footer-bar-link" href="/">Lumosion</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/valor-x/hexo-theme-solitude" alt="主题">主题</a><a class="footer-bar-link cc" href="/null" aria-label="copyright"><i class="solitude st-copyright-line"></i><i class="solitude st-creative-commons-by-line"></i><i class="solitude st-creative-commons-nc-line"></i><i class="solitude st-creative-commons-nd-line"></i></a></div></div></div></footer></div><!-- right_menu--><!-- inject body--><div><script src="/js/utils.js?v=1.8.12"></script><script src="/js/main.js?v=1.8.12"></script><script src="/js/third_party/waterfall.min.js?v=1.8.12"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/third_party/universe.min.js?v=1.8.12"></script><script>dark()
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js"><script>(() => {
+    document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+        utils.wrap(item, 'div', {class: 'katex-wrap'})
+    })
+})();
+</script></script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><div class="js-pjax"></div></div><!-- newest comment--><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    is_rm && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- google adsense--><!-- search--><!-- music--></body></html><script>const posts=["2024/05/12/v2ray/","2024/04/21/拯救Pika-题解/","2024/04/21/拯救Pika（middle version）/","2024/04/21/次元LAB - 题目及题解/","2024/04/21/板子/","2024/04/21/图论plus/","2024/04/21/树论/","2024/04/21/5 数论/","2024/04/21/jiangly板子/","2024/04/21/0 基础算法/","2024/04/21/1 搜索-图论/","2024/04/21/hello-world/"];function toRandomPost(){ pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]); }</script>
