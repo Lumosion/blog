@@ -2581,7 +2581,6 @@ span.tags-punctuation::before {
 }
 #aside-content #card-toc .toc-content:hover .toc-link:not(.active) span,
 #aside-content #card-toc .toc-content .toc-content .toc-link:not(.active) span {
-  filter: blur(0);
   opacity: 1;
 }
 #aside-content #card-toc .toc-content .toc-item.active .toc-link {
@@ -2611,7 +2610,6 @@ span.tags-punctuation::before {
 #aside-content #card-toc .toc-content .toc-link:not(.active) span {
   opacity: 0.6;
   cursor: pointer;
-  filter: blur(1px);
   transition: 0.3s;
 }
 #aside-content #card-toc .toc-content .toc-link:not(.active) span:hover {
